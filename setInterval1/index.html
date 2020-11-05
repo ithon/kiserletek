@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="utf-8">
+    <title>Nagyon érdekes JavaScript kísérlet I.</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://www.debian.org/favicon.ico" type="image/x-icon">
+
+    <link Xrel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <style type="text/css">
+        body {
+            color: darkblue;
+            background: white;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            let output = document.getElementById("output");
+            let _;
+            let previous = new Date();
+
+            console.info("Starting setInterval ...");
+
+            setInterval(
+                function () {
+                    let now = new Date();
+                    let runner;
+                    let listElement = document.createElement("li");
+
+                    for (runner = 0; runner < 1e7; runner += 1) {
+                        Math.sqrt(runner);
+                    }
+
+                    listElement.innerHTML = String(now - previous);
+                    output.appendChild(listElement);
+                    previous = now;
+                },
+                3*1000
+            );
+        }
+    </script>
+</head>
+<body>
+    <main>
+        <h1>setInterval kísérlet I.</h1>
+        <p>⏰ Két függvény hívás között eltelt idő ezredmásodpercben.</p>
+        <p><em>Próbálj meg más böngészőlapokra váltani és megterhelni a böngésződet!</em></p>
+
+        <ul id="output"></ul>
+    <main>
+</body>
+</html>
